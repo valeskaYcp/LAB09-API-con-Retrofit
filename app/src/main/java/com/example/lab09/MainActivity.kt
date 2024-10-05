@@ -97,3 +97,30 @@ fun BarraInferior(navController: NavHostController) {
         )
     }
 }
+
+@Composable
+fun Contenido(
+    pv: PaddingValues,
+    navController: NavHostController,
+    servicio: PostApiService
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(pv)
+    ) {
+        NavHost(
+            navController = navController,
+            startDestination = "inicio" // Ruta de inicio
+        ) {
+            composable("inicio") { ScreenInicio() }
+
+            composable("posts") { ScreenPosts(navController, servicio) }
+            composable("postsVer/{id}", arguments = listOf(
+                navArgument("id") { type = NavType.IntType })
+            ) {
+                ScreenPost(navController, servicio, it.arguments!!.getInt("id"))
+            }
+        }
+    }
+}
