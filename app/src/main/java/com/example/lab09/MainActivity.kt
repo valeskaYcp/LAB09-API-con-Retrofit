@@ -42,8 +42,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Lab09Theme {
-
-                }
+                ProgPrincipal9()
+            }
             }
         }
     }
